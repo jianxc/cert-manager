@@ -1,12 +1,25 @@
 // Configuration Array
 var config = {};
 config.web = {};
+config.cert = {};
 config.db = {};
 
 // Web Port
 //
 // This is the port that the web server will listen on.
 config.web.port = 8080;
+
+// OpenSSL Binary Location
+//
+// This is the location of the OpenSSL binary that will be used for certificate
+// related operations.
+config.cert.openssl = 'openssl';
+
+// Certificate Data Location
+//
+// This is the location where all certificate data will be stored. The default is
+// the directory that this program runs in.
+config.cert.data = 'data/';
 
 // Database Host
 //
