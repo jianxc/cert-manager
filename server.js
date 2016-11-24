@@ -1,5 +1,6 @@
 // Dependencies
 var express = require('express'),
+    database = require('./lib/database/database'),
     config = require('./config');
 
 // Initialize app
