@@ -1,6 +1,7 @@
 // Configuration Array
 var config = {};
 config.web = {};
+config.session = {};
 config.cert = {};
 config.db = {};
 
@@ -8,6 +9,22 @@ config.db = {};
 //
 // This is the port that the web server will listen on.
 config.web.port = 8080;
+
+// Session Cookie Name
+//
+// This is the name of the cookie that will be used to store the session ID.
+config.session.name = 'ctmg.sid';
+
+// Session Secret
+//
+// This is the secret used to generate the session ID. This should be changed in
+// production environments.
+config.session.secret = 'terces';
+
+// Session TTL
+//
+// This is the TTL for sessions in seconds. The default is seven days.
+config.session.ttl = 7 * 24 * 60 * 60;
 
 // OpenSSL Binary Location
 //
