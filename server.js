@@ -14,6 +14,9 @@ app.use(session);
 // v1 Index GET Route
 app.get('/v1/', routes.get.index);
 
+// v1 Logout POST Route
+app.post('/v1/auth/logout', routes.post.logout);
+
 // Listen on specified port
 app.listen(config.web.port, function() {
   // Log port
