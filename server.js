@@ -1,6 +1,7 @@
 // Dependencies
 var express = require('express'),
     database = require('./lib/database/database'),
+    bodyParser = require('body-parser'),
     session = require('./lib/session/session'),
     routes = require('./routes/v1/routes'),
     config = require('./config');
@@ -8,7 +9,13 @@ var express = require('express'),
 // Initialize app
 var app = express();
 
-// Session Middleware
+// Use application/x-www-form-urlencoded body parsing middleware
+app.use(bodyParser.urlencoded({extended: false}));
+
+// Use JSON body parsing middleware
+app.use(bodyParser.json());
+
+// Use session middleware
 app.use(session);
 
 // v1 Index GET Route
