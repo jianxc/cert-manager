@@ -1,9 +1,9 @@
 // Dependencies
-var generate = require('../../../lib/response/generator'),
+var send = require('../../../lib/response/sender'),
     version = require('../../../package.json').version;
 
 // Index GET Function
 module.exports = function(req, res) {
-  // Send information about the API
-  res.send(generate({serverVersion: version, apiVersion: 1}));
+  // Send a response with information about the API
+  send(res, {serverVersion: version, apiVersion: 1});
 }

@@ -1,5 +1,5 @@
 // Dependencies
-var generate = require('../../../lib/response/generator');
+var send = require('../../../lib/response/sender');
 
 // Logout POST Function
 module.exports = function(req, res) {
@@ -9,6 +9,6 @@ module.exports = function(req, res) {
   // Destroy the session
   session.destroy();
 
-  // Send the response
-  res.send(generate());
+  // Send a response without data or errors
+  send(res);
 }
