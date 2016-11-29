@@ -10,5 +10,5 @@ module.exports = function(req, res) {
   session.destroy();
 
   // Send a response without data or errors
-  send(res);
+  return(send(res));
 }

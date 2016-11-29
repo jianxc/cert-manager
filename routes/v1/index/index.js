@@ -5,5 +5,5 @@ var send = require('../../../lib/response/sender'),
 // Index GET Function
 module.exports = function(req, res) {
   // Send a response with information about the API
-  send(res, {serverVersion: version, apiVersion: 1});
+  return(send(res, {serverVersion: version, apiVersion: 1}));
 }

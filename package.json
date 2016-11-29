@@ -12,7 +12,8 @@
     "express-session": "1.14.x",
     "body-parser": "1.15.x",
     "mongoose": "4.7.x",
-    "connect-mongo": "1.3.x"
+    "connect-mongo": "1.3.x",
+    "bcryptjs": "2.3.x"
   },
   "license": "MIT"
 }

@@ -23,6 +23,8 @@ app.use(session);
 // v1 Index GET Route
 app.get('/v1/', routes.get.index);
 
+// v1 Login POST Route
+app.post('/v1/auth/login', routes.post.login);
 // v1 Logout POST Route
 app.post('/v1/auth/logout', routes.post.logout);
 
