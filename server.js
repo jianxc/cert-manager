@@ -1,6 +1,5 @@
 // Dependencies
 var express = require('express'),
-    database = require('./lib/database/database'),
     bodyParser = require('body-parser'),
     session = require('./lib/session/session'),
     routes = require('./routes/v1/routes'),
@@ -34,8 +33,10 @@ app.use(function(req, res, next) {
   send(res, null, [errors.not_found]);
 });
 
-// Listen on specified port
-app.listen(config.web.port, function() {
+// Listen on specified port and export it as server
+exports.server = app.listen(config.web.port, function() {
   // Log port
   console.log('Web server listening on port', config.web.port);
+  // Establish a connection with the database
+  require('./lib/database/database');
 });
