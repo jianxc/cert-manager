@@ -5,7 +5,7 @@ var send = require('../../../lib/response/sender'),
     bcrypt = require('bcryptjs');
 
 // Login POST Function
-module.exports = function(req, res) {
+module.exports = function(req, res, next) {
   // Session
   var session = req.session;
 
@@ -28,8 +28,8 @@ module.exports = function(req, res) {
 
   // Attempt to authenticate the user
   Account.findOne({username: username}, function(err, account) {
-    // Exit and log the error if one occurs
-    if (err) return(console.error(err));
+    // Return and advance to the next route
+    if (err) return(next(err));
 
     // Determine if results are undefined
     if (!account) {

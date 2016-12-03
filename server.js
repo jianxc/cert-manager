@@ -33,6 +33,14 @@ app.use(function(req, res, next) {
   send(res, null, [errors.not_found]);
 });
 
+// Use error handling middleware
+app.use(function(err, req, res, next) {
+  // Log the error to console
+  console.error(err);
+  // Send a response with internal_server_error
+  send(res, null, [errors.internal_server_error]);
+});
+
 // Listen on specified port and export it as server
 exports.server = app.listen(config.web.port, function() {
   // Log port
