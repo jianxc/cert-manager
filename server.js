@@ -46,23 +46,36 @@ app.use(function(err, req, res, next) {
   send(res, null, [errors.internal_server_error]);
 });
 
-// Listen on specified port and export it as server
-exports.server = app.listen(config.web.port, function() {
+// Listen on specified port and assign it to server
+var server = app.listen(config.web.port, function() {
   // Log port
   console.log('Web server listening on port', config.web.port);
   // Perform datastore checks
   require('./lib/datastore/datastore').init(function(err) {
     // Determine if an error occurred
     if (err) {
-      // Log initialization
-      console.log('Failed to initialize the datastore');
+      // Log the failed initialization
+      console.error('Failed to initialize the datastore');
       // Log the error
-      console.log(err);
+      console.error(err);
     } else {
-      // Log initialization
+      // Log the successful initialization
       console.log('Successfully initialized the datastore');
     }
   });
   // Establish a connection with the database
-  require('./lib/database/database');
+  require('./lib/database/database').init(function(err) {
+    // Determine if an error occurred
+    if (err) {
+      // Log the failed connection
+      console.error('Failed to connect to the database at', config.db.path);
+      // Log the error
+      console.error(err);
+      // Close the Express server
+      server.close();
+    } else {
+      // Log the successful connection
+      console.log('Successfully connected to the database at', config.db.path);
+    }
+  });
 });
