@@ -8,17 +8,23 @@ module.exports = function(req, res) {
   // Session
   var session = req.session;
 
-  // Directory
-  var directory = req.params.directory;
+  // Directory Slug
+  var slug = req.params.slug;
 
   // Determine if the user is authenticated
   if (!session.uid) {
-    // Send a response with an Unauthenticated error
+    // Send a response with an unauthenticated error
     return(send(res, null, [errors.unauthenticated]));
   }
 
-  // Attempt to initalize the PKI directory
-  datastore.deletePKI(directory, function(err) {
+  // Determine if slug is not set
+  if (!slug) {
+    // Send a response with an invalid_arameters error
+    return(send(res, null, [errors.invalid_parameters]));
+  }
+
+  // Attempt to delete the PKI directory
+  datastore.deletePKI({slug: slug}, function(err) {
     // Determine if an error occurred
     if (err && err.message == '!exists') {
       // Send a response with a not_found error

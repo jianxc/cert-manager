@@ -20,10 +20,10 @@ module.exports = function(req, res, next) {
     return(send(res));
   }
 
-  // Determine if both username and password are set
+  // Determine if username or password is not set
   if (!(username && password)) {
-    // Send a response with an invalid_credentials error
-    return(send(res, null, [errors.invalid_credentials]));
+    // Send a response with an invalid_parameters error
+    return(send(res, null, [errors.invalid_parameters]));
   }
 
   // Attempt to authenticate the user
@@ -45,7 +45,7 @@ module.exports = function(req, res, next) {
 
     // Determine if the account is suspended
     if (account.isSuspended) {
-      // Send a response with an suspended_account error
+      // Send a response with a suspended_account error
       return(send(res, null, [errors.suspended_account]));
     }
 

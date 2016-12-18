@@ -28,9 +28,9 @@ app.post('/v1/auth/login', routes.post.login);
 app.post('/v1/auth/logout', routes.post.logout);
 
 // v1 PKI POST Route
-app.post('/v1/pki/:directory', routes.post.pki);
+app.post('/v1/pki/:slug', routes.post.pki);
 // v1 PKI DELETE Route
-app.delete('/v1/pki/:directory', routes.delete.pki);
+app.delete('/v1/pki/:slug', routes.delete.pki);
 
 // Use not found handling middleware
 app.use(function(req, res, next) {
