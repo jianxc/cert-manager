@@ -2,6 +2,7 @@
 var routes = {};
 routes.get = {};
 routes.post = {};
+routes.delete = {};
 
 // Index GET Route
 //
@@ -10,13 +11,23 @@ routes.get.index = require('./index/index');
 
 // Login POST Route
 //
-// The Login Route is a route that allows the user to authenticate with the API.
+// This route allows users to authenticate with the API.
 routes.post.login = require('./auth/login');
 
 // Logout POST Route
 //
-// The Logout Route is a route that allows the user to deauthenticate from the API.
+// This route allows users to deauthenticate from the API.
 routes.post.logout = require('./auth/logout');
+
+// PKI POST Route
+//
+// This route allows users to create a PKI directory.
+routes.post.pki = require('./pki/create');
+
+// PKI DELETE Route
+//
+// This route allows users to delete a PKI directory.
+routes.delete.pki = require('./pki/delete');
 
 // Export routes array
 module.exports = routes;

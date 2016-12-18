@@ -27,6 +27,11 @@ app.post('/v1/auth/login', routes.post.login);
 // v1 Logout POST Route
 app.post('/v1/auth/logout', routes.post.logout);
 
+// v1 PKI POST Route
+app.post('/v1/pki/:directory', routes.post.pki);
+// v1 PKI DELETE Route
+app.delete('/v1/pki/:directory', routes.delete.pki);
+
 // Use not found handling middleware
 app.use(function(req, res, next) {
   // Send a response with a not_found error
@@ -45,6 +50,19 @@ app.use(function(err, req, res, next) {
 exports.server = app.listen(config.web.port, function() {
   // Log port
   console.log('Web server listening on port', config.web.port);
+  // Perform datastore checks
+  require('./lib/datastore/datastore').init(function(err) {
+    // Determine if an error occurred
+    if (err) {
+      // Log initialization
+      console.log('Failed to initialize the datastore');
+      // Log the error
+      console.log(err);
+    } else {
+      // Log initialization
+      console.log('Successfully initialized the datastore');
+    }
+  });
   // Establish a connection with the database
   require('./lib/database/database');
 });

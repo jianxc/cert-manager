@@ -28,7 +28,7 @@ module.exports = function(req, res, next) {
 
   // Attempt to authenticate the user
   Account.findOne({username: username}, function(err, account) {
-    // Return and advance to the next route
+    // Return and advance to the next route if an error occurs
     if (err) return(next(err));
 
     // Determine if results are undefined
