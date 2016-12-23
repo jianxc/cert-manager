@@ -26,11 +26,11 @@ module.exports = function(req, res, next) {
     return(send(res, null, [errors.invalid_parameters]));
   }
 
-  // Attempt to authenticate the user
-  Account.findOne({username: username}, function(err, account) {
-    // Return and advance to the next route if an error occurs
-    if (err) return(next(err));
+  // Query for the account with the specified username and set promise
+  var promise = Account.findOne({username: username}).lean().exec();
 
+  // Attempt to authenticate the user
+  promise.then(function(account) {
     // Determine if results are undefined
     if (!account) {
       // Send a response with an incorrect_credentials error
@@ -54,5 +54,8 @@ module.exports = function(req, res, next) {
 
     // Send a response without data or errors
     return(send(res));
+  }).catch(function(err) {
+    // Return and advance to the next route
+    return(next(err));
   });
 }

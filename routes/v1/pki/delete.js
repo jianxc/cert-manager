@@ -26,12 +26,15 @@ module.exports = function(req, res) {
   // Attempt to delete the PKI directory
   datastore.deletePKI({slug: slug}, function(err) {
     // Determine if an error occurred
-    if (err && err.message == '!exists') {
-      // Send a response with a not_found error
-      return(send(res, null, [errors.not_found]));
-    } else if (err) {
-      // Advance to next route
-      return(next(err));
+    if (err) {
+      // Determine if the error's message is !exists
+      if (err.message == '!exists') {
+        // Send a response with a not_found error
+        return(send(res, null, [errors.not_found]));
+      } else {
+        // Advance to next route
+        return(next(err));
+      }
     }
 
     // Send a response without data or errors
