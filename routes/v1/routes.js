@@ -2,6 +2,7 @@
 var routes = {};
 routes.get = {};
 routes.post = {};
+routes.put = {};
 routes.delete = {};
 
 // Index GET Route
@@ -19,10 +20,10 @@ routes.post.login = require('./auth/login');
 // This route allows users to deauthenticate from the API.
 routes.post.logout = require('./auth/logout');
 
-// PKI POST Route
+// PKI PUT Route
 //
-// This route allows users to create a PKI directory.
-routes.post.pki = require('./pki/create');
+// This route allows users to create/update a PKI directory.
+routes.put.pki = require('./pki/create');
 
 // PKI DELETE Route
 //

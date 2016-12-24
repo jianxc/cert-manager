@@ -27,8 +27,8 @@ app.post('/v1/auth/login', routes.post.login);
 // v1 Logout POST Route
 app.post('/v1/auth/logout', routes.post.logout);
 
-// v1 PKI POST Route
-app.post('/v1/pki/:slug', routes.post.pki);
+// v1 PKI PUT Route
+app.put('/v1/pki/:slug', routes.put.pki);
 // v1 PKI DELETE Route
 app.delete('/v1/pki/:slug', routes.delete.pki);
 
