@@ -32,17 +32,8 @@ module.exports = function(req, res, next) {
 
   // Attempt to initalize the PKI directory
   datastore.initializePKI(parameters, function(err) {
-    // Determine if an error occurred
-    if (err) {
-      // Determine if the error's message is exists
-      if (err.message == 'exists') {
-        // Send a response with an already_exists error
-        return(send(res, null, [errors.already_exists]));
-      } else {
-        // Advance to next route
-        return(next(err));
-      }
-    }
+    // Return and advance to the next route if an error occurs
+    if (err) return(next(err));
 
     // Send a response without data or errors
     return(send(res));
