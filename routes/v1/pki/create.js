@@ -30,8 +30,8 @@ module.exports = function(req, res, next) {
   // PKI directory parameters
   var parameters = {name: name, description: description, slug: slug, members: [{uid: session.uid}]};
 
-  // Attempt to initalize the PKI directory
-  datastore.initializePKI(parameters, function(err) {
+  // Attempt to create the PKI directory
+  datastore.createPKI(parameters, function(err) {
     // Return and advance to the next route if an error occurs
     if (err) return(next(err));
 
