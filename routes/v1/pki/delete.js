@@ -4,7 +4,7 @@ var send = require('../../../lib/response/sender'),
     datastore = require('../../../lib/datastore/datastore');
 
 // PKI DELETE Route
-module.exports = function(req, res) {
+module.exports = function(req, res, next) {
   // Session
   var session = req.session;
 
